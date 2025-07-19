@@ -5,7 +5,7 @@ echo   "Cooking Without Borders where Flavors Meet Cultures"
 echo ========================================
 echo.
 
-cd /d "D:\(H) Study\programming\3100 project\project_recipe_website\global_kitchen\globalKitchen\global_kitchen\backend"
+cd /d "D:\(H) Study\programming\3100 project\project_recipe_website\global_kitchen\globalKitchen\global_kitchen_react_ts_django\backend"
 
 echo Step 1: Installing Django dependencies...
 pip install -r requirements.txt

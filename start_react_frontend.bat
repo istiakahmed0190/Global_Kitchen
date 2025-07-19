@@ -3,7 +3,7 @@ echo Starting GlobalKitchen React Frontend
 echo "Cooking Without Borders where Flavors Meet Cultures"
 echo.
 
-cd /d "D:\(H) Study\programming\3100 project\project_recipe_website\global_kitchen\globalKitchen\v0 all\v0 react django"
+cd /d "D:\(H) Study\programming\3100 project\project_recipe_website\global_kitchen\globalKitchen\global_kitchen_react_ts_django"
 
 echo Installing dependencies (if needed)...
 npm install --legacy-peer-deps
