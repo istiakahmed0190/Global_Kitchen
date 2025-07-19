@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlobalKitchen - Home</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="min-h-screen bg-gray-50">
+    <header class="header">
+        <div class="flex items-center space-x-3">
+            <span class="text-orange-500 text-2xl">👨‍🍳</span>
+            <button id="logo-button" class="logo">GlobalKitchen</button>
+        </div>
+
+        <div class="search-bar">
+            <form id="search-form" class="relative">
+                <span class="search-icon">🔍</span>
+                <input type="search" placeholder="Search recipes, chefs, ingredients..." class="input" id="search-input">
+            </form>
+        </div>
+
+        <div class="actions">
+            <button class="action-button" id="notifications-button">
+                🔔
+                <span class="badge" id="notifications-badge">3</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="main-layout">
+        <aside class="sidebar">
+            <button class="user-info-button" id="profile-sidebar-button">
+                <div class="avatar-group">
+                    <div class="avatar">
+                        <img src="/placeholder.svg?height=40&width=40" alt="User Avatar" id="sidebar-avatar">
+                        <div class="avatar-fallback" id="sidebar-avatar-fallback"></div>
+                    </div>
+                    <div>
+                        <h3 id="sidebar-display-name"></h3>
+                        <p id="sidebar-username"></p>
+                    </div>
+                </div>
+                <div class="user-stats">
+                    <div>
+                        <div class="stat-value" id="sidebar-posts-count"></div>
+                        <div class="stat-label">Posts</div>
+                    </div>
+                    <div>
+                        <div class="stat-value" id="sidebar-followers-count"></div>
+                        <div class="stat-label">Followers</div>
+                    </div>
+                    <div>
+                        <div class="stat-value" id="sidebar-following-count"></div>
+                        <div class="stat-label">Following</div>
+                    </div>
+                </div>
+            </button>
+
+            <button id="create-post-button" class="create-button">
+                ➕ Create
+            </button>
+
+            <nav class="space-y-2">
+                <button id="feed-button" class="button active">
+                    <span class="mr-3">🏠</span>Home
+                </button>
+                <button id="profile-button" class="button">
+                    <span class="mr-3">👤</span>Profile
+                </button>
+                <button id="messages-button" class="button">
+                    <span class="mr-3">💬</span>Messages
+                </button>
+                <button id="settings-button" class="button">
+                    <span class="mr-3">⚙️</span>Settings
+                </button>
+            </nav>
+
+            <div class="mt-8">
+                <button id="logout-button" class="logout-button">
+                    🚪 Logout
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-content" id="main-content-area">
+            <!-- Content will be loaded here by JavaScript -->
+        </main>
+    </div>
+
+    <!-- Create Post Modal (simplified) -->
+    <div id="create-post-modal" class="create-post-overlay hidden">
+        <div class="create-post-card">
+            <div class="create-post-header">
+                <h2 class="create-post-title">
+                    👨‍🍳 <span>Create Recipe Post</span>
+                </h2>
+                <button class="create-post-close-button" id="close-create-post-modal">
+                    ✖️
+                </button>
+            </div>
+            <div class="create-post-content">
+                <div class="create-post-user-info">
+                    <div class="avatar create-post-user-avatar">
+                        <img src="/placeholder.svg?height=40&width=40" alt="User Avatar" id="create-post-avatar">
+                        <div class="create-post-user-fallback" id="create-post-avatar-fallback"></div>
+                    </div>
+                    <div>
+                        <h4 class="create-post-user-name" id="create-post-display-name"></h4>
+                        <p class="create-post-user-username" id="create-post-username"></p>
+                    </div>
+                </div>
+
+                <textarea placeholder="Share your culinary creation! What's cooking today?" class="create-post-textarea" id="post-content"></textarea>
+
+                <div class="create-post-media-buttons">
+                    <label for="photo-upload" class="cursor-pointer">
+                        <button class="create-post-media-button" type="button">
+                            📸 Add Photo
+                        </button>
+                        <input id="photo-upload" type="file" accept="image/*" class="sr-only">
+                    </label>
+                    <label for="video-upload" class="cursor-pointer">
+                        <button class="create-post-media-button" type="button">
+                            📹 Add Video
+                        </button>
+                        <input id="video-upload" type="file" accept="video/*" class="sr-only">
+                    </label>
+                    <button class="create-post-media-button" id="toggle-recipe-form">
+                        👨‍🍳 Add Recipe
+                    </button>
+                </div>
+
+                <div id="recipe-form-section" class="create-post-recipe-form hidden">
+                    <h3 class="create-post-recipe-form-header">Recipe Details</h3>
+                    <div class="create-post-recipe-form-content">
+                        <div class="create-post-recipe-grid">
+                            <div>
+                                <label class="create-post-recipe-label">Recipe Title</label>
+                                <input placeholder="e.g., Grandma's Chocolate Chip Cookies" class="create-post-recipe-input" id="recipe-title">
+                            </div>
+                            <div>
+                                <label class="create-post-recipe-label">Cuisine Type</label>
+                                <input placeholder="e.g., Italian, Mexican, Asian" class="create-post-recipe-input" id="recipe-cuisine">
+                            </div>
+                        </div>
+
+                        <div class="create-post-recipe-grid cols-3">
+                            <div>
+                                <label class="create-post-recipe-label">Cook Time</label>
+                                <input placeholder="30 min" class="create-post-recipe-input" id="recipe-cook-time">
+                            </div>
+                            <div>
+                                <label class="create-post-recipe-label">Servings</label>
+                                <input placeholder="4" type="number" class="create-post-recipe-input" id="recipe-servings">
+                            </div>
+                            <div>
+                                <label class="create-post-recipe-label">Difficulty</label>
+                                <select class="create-post-select-trigger" id="recipe-difficulty">
+                                    <option value="">Select</option>
+                                    <option value="easy">Easy</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="hard">Hard</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="create-post-ingredients-header">
+                                <label class="create-post-recipe-label">Ingredients</label>
+                                <button type="button" class="create-post-add-button" id="add-ingredient">
+                                    ➕ Add
+                                </button>
+                            </div>
+                            <div class="space-y-2" id="ingredients-list">
+                                <div class="create-post-list-item">
+                                    <input placeholder="Ingredient 1" class="create-post-recipe-input ingredient-input">
+                                    <button type="button" class="create-post-remove-button remove-ingredient-button">➖</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="create-post-instructions-header">
+                                <label class="create-post-recipe-label">Instructions</label>
+                                <button type="button" class="create-post-add-button" id="add-instruction">
+                                    ➕ Add Step
+                                </button>
+                            </div>
+                            <div class="space-y-2" id="instructions-list">
+                                <div class="create-post-list-item">
+                                    <div class="create-post-instruction-number">1</div>
+                                    <textarea placeholder="Step 1 instructions..." class="create-post-textarea instruction-textarea"></textarea>
+                                    <button type="button" class="create-post-remove-button remove-instruction-button">➖</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="create-post-recipe-label">Hashtags</label>
+                    <input placeholder="#delicious #homemade #recipe" class="create-post-hashtags-input" id="hashtags-input">
+                </div>
+
+                <div class="create-post-actions">
+                    <div class="create-post-char-count" id="char-count">0/2000 characters</div>
+                    <div class="create-post-action-buttons">
+                        <button class="create-post-cancel-button" id="cancel-post">
+                            Cancel
+                        </button>
+                        <button class="create-post-share-button" id="share-post">
+                            Share Recipe
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>
